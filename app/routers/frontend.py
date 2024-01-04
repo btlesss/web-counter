@@ -15,7 +15,7 @@ router = APIRouter(
 async def view_group(request: Request, group_id: str):
     async with RedisDB() as db:
         group_raw = await db.hgetall(f"group:{group_id}")
-        if group_raw is None:
+        if group_raw == {}:
             group = Group(name="Group not found")
         else:
             group = await group_from_redis(RedisGroup(**group_raw), db)

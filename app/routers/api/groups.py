@@ -53,7 +53,7 @@ async def delete_counter_from_group(
 ) -> OperationSuccess:
     async with RedisDB() as db:
         group_raw = await db.hgetall(f"group:{group_id}")
-        if group_raw is None:
+        if group_raw == {}:
             return JSONResponse({"details": "Group not found"}, 404)
 
         group = Group(**group_raw)

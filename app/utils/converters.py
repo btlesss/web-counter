@@ -19,7 +19,7 @@ async def group_from_redis(redis_group: RedisGroup, db: aredis.Redis) -> Group:
     tasks = []
     for counter_id in redis_group.counters:
         counter_raw = await db.hgetall(f"counter:{counter_id}")
-        if counter_raw is None:
+        if counter_raw == {}:
             continue
         counter = RedisCounter(**counter_raw)
         tasks.append(counter_from_redis(counter, db))

@@ -34,7 +34,7 @@ async def get_counter(
 ) -> Counter:
     async with RedisDB() as db:
         counter_raw = await db.hgetall(f"counter:{counter_id}")
-        if counter_raw is None:
+        if counter_raw == {}:
             return JSONResponse({"details": "Counter not found"}, 404)
         counter = await counter_from_redis(RedisCounter(**counter_raw), db)
 
@@ -48,7 +48,7 @@ async def set_counter_name(
 ) -> Counter:
     async with RedisDB() as db:
         counter_raw = await db.hgetall(f"counter:{counter_id}")
-        if counter_raw is None:
+        if counter_raw == {}:
             return JSONResponse({"details": "Counter not found"}, 404)
 
         counter = RedisCounter(**counter_raw)
@@ -71,7 +71,7 @@ async def increment_counter(
 ) -> Counter:
     async with RedisDB() as db:
         counter_raw = await db.hgetall(f"counter:{counter_id}")
-        if counter_raw is None:
+        if counter_raw == {}:
             return JSONResponse({"details": "Counter not found"}, 404)
 
         counter = Counter(**counter_raw)
