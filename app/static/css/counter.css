@@ -1,0 +1,22 @@
+section.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    height: 300px;
+}
+.total {
+    font-size: 2em;
+    margin-top: 0;
+}
+.timings {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.timing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

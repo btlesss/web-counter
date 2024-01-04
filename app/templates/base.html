@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/base.css">
     <meta name="theme-color" content="#6200ff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="/static/css/base.css">
+    {% block styles %}{% endblock %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-scrollbar@latest/simple-scrollbar.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
         <section class="header">
             {% block head %}{% endblock %}
         </section>
-        <section class="body" ss-container>
+        <section class="body">
             {% block body %}{% endblock %}
         </section>
         <section class="footer">

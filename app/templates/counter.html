@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block styles %}
+<link rel="stylesheet" href="/static/css/counter.css">
+{% endblock %}
+{% block head %}
+<a>{{ counter.name }}</a>
+{% endblock %}
+{% block body %}
+<h1 class="total">{{ counter.value | pretty }}</h1>
+<div class="timings">
+    <div class="timing">
+        <b>24h</b>
+        <a>{{ counter.timings.per24h | pretty }}</a>
+    </div>
+    <div class="timing">
+        <b>7d</b>
+        <a>{{ counter.timings.per7d | pretty }}</a>
+    </div>
+    <div class="timing">
+        <b>30d</b>
+        <a>{{ counter.timings.per30d | pretty }}</a>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    const tbl=document.querySelector("#tbl");
+    tbl.querySelectorAll('thead > th').forEach(th => th.addEventListener('click', (() => {
+        const tbody = tbl.querySelector('tbody');
+        Array.from(tbody.querySelectorAll('tr'))
+            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+            .forEach(tr => tbody.appendChild(tr));
+    })));
+</script>
+{% endblock %}
