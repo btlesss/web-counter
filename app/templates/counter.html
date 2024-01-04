@@ -23,13 +23,4 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script>
-    const tbl=document.querySelector("#tbl");
-    tbl.querySelectorAll('thead > th').forEach(th => th.addEventListener('click', (() => {
-        const tbody = tbl.querySelector('tbody');
-        Array.from(tbody.querySelectorAll('tr'))
-            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-            .forEach(tr => tbody.appendChild(tr));
-    })));
-</script>
 {% endblock %}

@@ -31,11 +31,16 @@
 {% endblock %}
 {% block scripts %}
 <script>
+    const getCellValue = (tr, idx) => tr.children[idx].innerText;
+    const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+        )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+    
     const tbl=document.querySelector("#tbl");
-    tbl.querySelectorAll('thead > th').forEach(th => th.addEventListener('click', (() => {
+    tbl.querySelectorAll('thead th').forEach(th => th.addEventListener('click', (() => {
         const tbody = tbl.querySelector('tbody');
         Array.from(tbody.querySelectorAll('tr'))
-            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), th.asc = !th.asc))
             .forEach(tr => tbody.appendChild(tr));
     })));
 </script>
