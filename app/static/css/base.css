@@ -1,0 +1,108 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+@media screen and (min-width: 400px) {
+    body {
+        zoom: 1.1;
+    }
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #161616;
+    font-family: "Golos Text", sans-serif;
+    margin: 0;
+}
+.scroll-content {
+    will-change: transform;
+}
+.container {
+    margin: 15px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-height: calc(100% - 20px);
+    margin-bottom: 40px;
+}
+section {
+    border-radius: 10px;
+}
+section.header {
+    color: white;
+    background-color: #6200ff;
+    text-align: center;
+    padding: 10px 15px;
+    
+    font-weight: 800;
+    font-size: 1.3em;
+}
+section.body {
+    background-color: #FFF;
+    height: 400px;
+    overflow: hidden;
+}
+section.footer {
+    position: fixed;
+    width: 400px;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+a.link {
+    color: #363636;
+    font-weight: 800;
+    font-size: .9em;
+    text-decoration: none;
+    transition: color .5s;
+}
+a.link:hover {
+    color: #5a5a5a;
+}
+.ss-content::-webkit-scrollbar {
+    display: none; 
+}
+.ss-content{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+table {
+    width: calc(100% - 18px);
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+table thead tr {
+    background-color: #6200ff;
+    color: #ffffff;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    transition: box-shadow .5s;
+}
+table thead tr.freezed {
+    box-shadow: 0 0 30px -3px #6200ffc9;
+}
+table th, table td {
+    padding: 12px 15px;
+    transition: .3s;
+}
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: .3s;
+    pointer-events: all;
+    cursor: pointer;
+}
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+@media (hover:hover) { /* check if hover exactly possible */
+    table tbody tr:hover {
+        background-color: #6200ff18;
+    }
+}

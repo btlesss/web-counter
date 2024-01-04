@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head %}
+<a>{{ group.name }}</a>
+{% endblock %}
+{% block body %}
+<table id="tbl">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Total</th>
+            <th>7d</th>
+            <th>24h</th>
+        </tr>
+    </thead>
+    <tbody id="urls">
+        {% for el in group.counters %}
+        <tr onclick="document.location = '/count/{{ el.id }}'"><th>{{el.name}}</th><td>{{el.value}}</td><td>{{el.timings.per7d}}</td><td>{{el.timings.per24h}}</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
