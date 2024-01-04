@@ -85,6 +85,10 @@ table thead tr {
     top: 0;
     transition: box-shadow .5s;
 }
+table thead th {
+    user-select: none;
+    cursor: pointer;
+}
 table thead tr.freezed {
     box-shadow: 0 0 30px -3px #6200ffc9;
 }
@@ -104,5 +108,8 @@ table tbody tr:nth-of-type(even) {
 @media (hover:hover) { /* check if hover exactly possible */
     table tbody tr:hover {
         background-color: #6200ff18;
+    }
+    table thead th {
+        background-color: #0000002b;
     }
 }
