@@ -20,7 +20,9 @@ async def view_group(request: Request, group_id: str):
         else:
             group = await group_from_redis(RedisGroup(**group_raw), db)
     
-    return templates.TemplateResponse(name="group.html", context={"request": request, "group":group})
+    group.counters.sort(key = lambda counter: counter.value, reverse=True)
+
+    return templates.TemplateResponse(name="group.html", context={"request": request, "group": group})
 
 @router.get("/count/{counter_id}", response_class=HTMLResponse, tags=["user interface"])
 async def view_counter(request: Request, counter_id: str):

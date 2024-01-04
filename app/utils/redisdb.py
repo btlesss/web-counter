@@ -1,5 +1,9 @@
 import os
 import redis.asyncio as aredis
+
+from dotenv import load_dotenv
+load_dotenv()
+
 redis_pool = aredis.ConnectionPool(
     host=os.getenv("REDIS_HOST", "localhost"), 
     port=os.getenv("REDIS_PORT", 6379),

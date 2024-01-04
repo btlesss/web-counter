@@ -3,10 +3,6 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from routers import frontend, api
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 app = FastAPI(
     title="CounterAPI",
     description="RESTful API for counting and displaying anything",
