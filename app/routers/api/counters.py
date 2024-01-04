@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body, Path, Query
 from fastapi.responses import JSONResponse
 
 from utils import RedisDB, counter_from_redis
-from dtypes import RedisCounter, Counter, NewCounter
+from dtypes import RedisCounter, Counter, NewCounter, OperationSuccess
 
 from random import randint
 from time import time
@@ -45,7 +45,7 @@ async def get_counter(
 async def set_counter_name(
     counter_id: str = Path(title="id of counter", examples=["kumanju"]),
     new_name: str = Query(description="new human-readable name of counter"),
-) -> Counter:
+) -> OperationSuccess:
     async with RedisDB() as db:
         counter_raw = await db.hgetall(f"counter:{counter_id}")
         if counter_raw == {}:
@@ -74,7 +74,7 @@ async def increment_counter(
         if counter_raw == {}:
             return JSONResponse({"details": "Counter not found"}, 404)
 
-        counter = Counter(**counter_raw)
+        counter = RedisCounter(**counter_raw)
 
         if not unique_id:
             unique_id = randint(10**7,10**10)
@@ -82,5 +82,7 @@ async def increment_counter(
         counter.value += added_count
         
         await db.hset(f"counter:{counter.id}", mapping=counter.model_dump())
+        
+        counter = await counter_from_redis(counter, db)
 
     return counter
