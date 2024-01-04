@@ -46,7 +46,7 @@ table tbody tr:nth-of-type(even) {
     table tbody tr:hover {
         background-color: #6200ff18;
     }
-    table thead th {
+    table thead th:hover {
         background-color: #0000002b;
     }
 }
