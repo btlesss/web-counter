@@ -25,6 +25,8 @@ async def create_counter(
             counter.generate_id()
 
         await db.hset(f"counter:{counter.id}", mapping=counter.model_dump())
+    
+    counter = Counter(**counter.model_dump())
     return counter
 
 

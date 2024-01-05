@@ -32,17 +32,12 @@ class CounterTimings(BaseModel):
     per30d: int = 0
 
 
-class CounterTimingsUnfilled(BaseModel):
-    pass
-
-
 class Counter(IDGenerator):
     name: str = Field(
         min_length=1, max_length=32, title="Human-readable name of counter"
     )
     value: int = Field(0, title="Total count")
-    timings: CounterTimings = Field(CounterTimingsUnfilled())
-
+    timings: CounterTimings = Field(CounterTimings())
 
 class RedisCounter(IDGenerator):
     name: str = Field(

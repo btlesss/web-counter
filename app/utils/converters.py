@@ -11,7 +11,6 @@ async def group_from_redis(redis_group: RedisGroup, db: aredis.Redis) -> Group:
     Args:
         redis_group (RedisGroup): group from redis with counters_ids instead of objects
         db (aredis.Redis): redis connection instance
-        with_timings (bool): Fill timings Defaults to False.
 
     Returns:
         Group: group instance with filled counters field
